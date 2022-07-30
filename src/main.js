@@ -5,8 +5,8 @@ function main() {
   const world = new World(container);
 
   // シーンの描画
-  // world.start();
-  world.render();
+  world.start();
+  // world.render();
 }
 
 main();

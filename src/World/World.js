@@ -1,7 +1,11 @@
+import { AxesHelper } from "../../vendor/three/build/three.module.js";
+
 import { createCamera } from "./components/camera.js";
 import { createCube } from "./components/cube.js";
 import { createLights } from "./components/light.js";
 import { createScene } from "./components/scene.js";
+
+import { createControls } from "./systems/controls.js";
 import { Loop } from "./systems/Loop.js";
 import { createRenderer } from "./systems/renderer.js";
 import { Resizer } from "./systems/Resizer.js";
@@ -18,11 +22,15 @@ class World {
     loop = new Loop(camera, scene, renderer);
     container.appendChild(renderer.domElement);
 
-    const cube = createCube();
-    const light = createLights();
-    loop.updatables.push(cube);
+    const controls = createControls(camera, renderer.domElement);
+    const axes = new AxesHelper(25);
 
-    scene.add(cube, light);
+    const cube = createCube();
+    const { ambientLight, mainLight } = createLights();
+
+    loop.updatables.push(cube, controls);
+
+    scene.add(cube, ambientLight, mainLight, axes);
 
     // 画面のリサイズ処理
     const resizer = new Resizer(container, camera, renderer);

@@ -13,7 +13,7 @@ function createCube() {
 
   const cube = new Mesh(geometry, material);
 
-  const radiansPerSecond = MathUtils.degToRad(180);
+  const radiansPerSecond = MathUtils.degToRad(30);
 
   // このメソッドは１フレームごとに呼ばれる
   cube.tick = (delta) => {
