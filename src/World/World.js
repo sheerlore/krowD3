@@ -2,6 +2,7 @@ import { AxesHelper } from "../../vendor/three/build/three.module.js";
 
 import { createCamera } from "./components/camera.js";
 import { createCube } from "./components/cube.js";
+import { loadAmong } from "./components/demo/among.js";
 import { createLights } from "./components/light.js";
 import { createScene } from "./components/scene.js";
 
@@ -30,7 +31,7 @@ class World {
 
     loop.updatables.push(cube, controls);
 
-    scene.add(cube, ambientLight, mainLight, axes);
+    scene.add(ambientLight, mainLight, axes);
 
     // 画面のリサイズ処理
     const resizer = new Resizer(container, camera, renderer);
@@ -38,6 +39,12 @@ class World {
 
   render() {
     renderer.render(scene, camera);
+  }
+
+  async init() {
+    const { among } = await loadAmong();
+
+    scene.add(among);
   }
 
   start() {
