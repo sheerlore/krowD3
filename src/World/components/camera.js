@@ -2,13 +2,13 @@ import { PerspectiveCamera } from "../../../vendor/three/build/three.module.js";
 
 function createCamera() {
   const camera = new PerspectiveCamera(
-    35, //fov Field Of View
-    1, // aspect ratio (dummy value)
-    0.1, // near clipping plane
-    100 // far clipping plane
+    75, //fov Field Of View
+    window.innerWidth / window.innerHeight, // aspect ratio (dummy value)
+    1, // near clipping plane
+    1000 // far clipping plane
   );
 
-  camera.position.set(0, 10, 20);
+  camera.position.y = 20;
 
   return camera;
 }

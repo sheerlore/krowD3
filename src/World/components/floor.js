@@ -1,29 +1,39 @@
 import {
+  ClampToEdgeWrapping,
+  Color,
   DynamicDrawUsage,
+  Float32BufferAttribute,
   Mesh,
   MeshBasicMaterial,
   PlaneBufferGeometry,
   PlaneGeometry,
   TextureLoader,
+  Vector3,
 } from "../../../vendor/three/build/three.module.js";
 
+const vertex = new Vector3();
+
 function createFloor() {
-  const geometry = new PlaneGeometry(150, 150, 64, 64);
+  let geometry = new PlaneGeometry(2000, 2000, 100, 100);
   geometry.rotateX(-Math.PI / 2);
-  const vertices = geometry.attributes.position.array;
-  for (let i = 0, j = 0, l = vertices.length; i < l; i++, j += 3) {
-    vertices[j + 1] = perlin.get(vertices[i] / 20, vertices[i + 1] / 20);
+  let position = geometry.attributes.position;
+  for (let i = 0, l = position.count; i < l; i++) {
+    vertex.fromBufferAttribute(position, i);
+    vertex.x += Math.random() * 20 - 10;
+    vertex.y += Math.random() * 2;
+    vertex.z += Math.random() * 20 - 10;
+    position.setXYZ(i, vertex.x, vertex.y, vertex.z);
   }
+  geometry.computeVertexNormals();
 
   const textureLoader = new TextureLoader();
   const texture = textureLoader.load("/assets/jimen.jpg");
+  texture.wrapS = ClampToEdgeWrapping;
+  texture.wrapT = ClampToEdgeWrapping;
   const material = new MeshBasicMaterial({
     map: texture,
   });
-
   const floor = new Mesh(geometry, material);
-  floor.receiveShadow = true;
-
   return floor;
 }
 

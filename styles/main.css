@@ -9,3 +9,35 @@ html, body {
   height: 100%;
   display: block;
 }
+
+#menu {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+#instructions {
+  width: 100%;
+  height: 100%;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  text-align: center;
+  font-size: 6rem;
+  cursor: pointer;
+}
+
+#instructions :nth-child(1) {
+  font-size: 10rem;
+  color: black;
+  font-weight: bold;
+
+}
+
+#instructions :nth-child(2) {
+  font-size: 10rem;
+}

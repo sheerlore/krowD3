@@ -1,8 +1,14 @@
-import { Fog, Scene } from "../../../vendor/three/build/three.module.js";
+import {
+  Color,
+  Fog,
+  FogExp2,
+  Scene,
+} from "../../../vendor/three/build/three.module.js";
 
 function createScene() {
   const scene = new Scene();
-  scene.fog = new Fog(0x000000, 10, 150);
+  scene.background = new Color(0xffffff);
+  scene.fog = new Fog(0xffffff, 0, 500);
   return scene;
 }
 

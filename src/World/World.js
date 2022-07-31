@@ -1,6 +1,7 @@
 import { AxesHelper } from "../../vendor/three/build/three.module.js";
 
 import { createCamera } from "./components/camera.js";
+import { createCarrot } from "./components/carrot.js";
 import { createCube } from "./components/cube.js";
 import { loadAmong } from "./components/demo/among.js";
 import { createFloor } from "./components/floor.js";
@@ -27,13 +28,14 @@ class World {
     const controls = createControls(camera, renderer.domElement);
     const axes = new AxesHelper(25);
 
-    const cube = createCube();
     const floor = createFloor();
-    const { ambientLight, mainLight } = createLights();
+    // const cube = createCube();
+    const carrot = createCarrot();
+    const { hemisphereLight } = createLights();
 
-    loop.updatables.push(cube, controls);
+    loop.updatables.push(controls);
 
-    scene.add(ambientLight, mainLight, axes, cube, floor);
+    scene.add(hemisphereLight, axes, carrot, floor);
 
     // 画面のリサイズ処理
     const resizer = new Resizer(container, camera, renderer);
