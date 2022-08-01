@@ -51,6 +51,7 @@ function createCarrots(num, camera) {
         carrot.position.y = 0;
       }
     };
+
     carrots.push(carrot);
   }
 

@@ -8,6 +8,7 @@ async function main() {
 
   // シーンの描画
   world.start();
+
   // world.render();
 }
 

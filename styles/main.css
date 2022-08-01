@@ -78,9 +78,17 @@ html, body {
   margin-left: 5%;
 }
 
+#carrot-restnum {
+  font-size: 1.65em;
+  margin-left: 10%;
+  vertical-align: middle;
+  font-weight: bold;
+}
+
 #carrot-num {
   font-size: 1.65em;
   margin-left: 10%;
   vertical-align: middle;
   font-weight: bold;
 }
+

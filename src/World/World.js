@@ -20,6 +20,8 @@ let renderer;
 let scene;
 let loop;
 class World {
+  static staticCarrotNum = 200;
+
   constructor(container) {
     camera = createCamera();
     scene = createScene();
@@ -32,7 +34,7 @@ class World {
     const controls = createControls(scene, camera, renderer.domElement);
     const { hemisphereLight } = createLights();
     const floor = createFloor();
-    const carrots = createCarrots(2, camera);
+    const carrots = createCarrots(World.staticCarrotNum, camera);
 
     for (let c of carrots) {
       loop.updatables.push(c);

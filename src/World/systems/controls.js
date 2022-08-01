@@ -3,11 +3,13 @@
 import { Vector3 } from "../../../vendor/three/build/three.module.js";
 import { PointerLockControls } from "../../../vendor/three/examples/jsm/controls/PointerLockControls.js";
 import { deleteCarrot } from "../components/carrot.js";
+import { World } from "../World.js";
 
 const menu = document.querySelector("#menu");
 const instructions = document.querySelector("#instructions");
 const subDisplay = document.querySelector("#sub-display");
 const carrotNum = document.querySelector("#carrot-num");
+const carrotRestNum = document.querySelector("#carrot-restnum");
 const velocity = new Vector3();
 const direction = new Vector3();
 
@@ -97,9 +99,11 @@ function createControls(scene, camera, canvas) {
   });
 
   controls.tick = (delta) => {
+    carrotRestNum.textContent = World.staticCarrotNum - cnum;
+
     if (controls.isLocked === true) {
-      velocity.x -= velocity.x * 10.0 * delta;
-      velocity.z -= velocity.z * 10.0 * delta;
+      velocity.x -= velocity.x * 5.0 * delta;
+      velocity.z -= velocity.z * 5.0 * delta;
       velocity.y -= 9.8 * 100.0 * delta;
 
       direction.z = Number(moveForward) - Number(moveBackward);
