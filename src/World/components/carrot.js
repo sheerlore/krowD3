@@ -1,14 +1,18 @@
 import {
   ConeBufferGeometry,
+  CylinderGeometry,
   Mesh,
   MeshBasicMaterial,
 } from "../../../vendor/three/build/three.module.js";
 
-function getRandomInt(min, max) {
-  min = Math.ceil(min);
-  max = Math.floor(max);
-  return Math.floor(Math.random() * (max - min) + min);
-}
+import { getRandomInt } from "../../utils/getRandomInt.js";
+import { World } from "../World.js";
+
+// function getRandomInt(min, max) {
+//   min = Math.ceil(min);
+//   max = Math.floor(max);
+//   return Math.floor(Math.random() * (max - min) + min);
+// }
 
 let selectedCarrot = null;
 let lastSelectedCarrot = { uuid: "dummy" };
@@ -18,21 +22,36 @@ function deleteCarrot() {
   if (selectedCarrot.uuid !== lastSelectedCarrot.uuid) {
     selectedCarrot.removeFromParent();
     lastSelectedCarrot = selectedCarrot;
+    World.staticCarrots = World.staticCarrots.filter(
+      (v) => v.uuid !== selectedCarrot.uuid
+    );
+    console.log("get:", selectedCarrot.position.x, selectedCarrot.position.z);
     return true;
   }
 }
 
 function createCarrots(num, camera) {
-  const carrots = [];
   if (num === undefined) num = 100;
   const geometry = new ConeBufferGeometry(3, 12, 12, 8).toNonIndexed();
   geometry.rotateX(-Math.PI);
+  const crHeadGeometry = new CylinderGeometry(
+    3,
+    0.5,
+    8,
+    17,
+    1,
+    true
+  ).toNonIndexed();
+  const material = new MeshBasicMaterial({ color: 0xf47a44 });
+  const crHeadMaterial = new MeshBasicMaterial({ color: 0x10af10 });
 
   for (let i = 0; i < num; i++) {
-    const material = new MeshBasicMaterial({ color: 0xf47a44 });
     const carrot = new Mesh(geometry, material);
-    carrot.position.x = getRandomInt(-800, 800);
-    carrot.position.z = getRandomInt(-800, 800);
+    const crHead = new Mesh(crHeadGeometry, crHeadMaterial);
+    carrot.position.x = getRandomInt(-500, 500);
+    carrot.position.z = getRandomInt(-500, 500);
+    crHead.position.y = carrot.position.y + 8;
+    carrot.add(crHead);
     let verticalAngle = 0;
 
     carrot.tick = (delta) => {
@@ -52,10 +71,10 @@ function createCarrots(num, camera) {
       }
     };
 
-    carrots.push(carrot);
+    World.staticCarrots.push(carrot);
   }
 
-  return carrots;
+  return;
 }
 
 export { createCarrots, deleteCarrot };
