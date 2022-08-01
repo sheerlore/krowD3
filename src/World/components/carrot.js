@@ -10,14 +10,16 @@ function getRandomInt(min, max) {
   return Math.floor(Math.random() * (max - min) + min);
 }
 
-let selectedCarrot;
-
-function selectCarrot() {
-  return selectedCarrot;
-}
+let selectedCarrot = null;
+let lastSelectedCarrot = { uuid: "dummy" };
 
 function deleteCarrot() {
-  if (selectedCarrot !== undefined) selectedCarrot.removeFromParent();
+  if (!selectedCarrot) return false;
+  if (selectedCarrot.uuid !== lastSelectedCarrot.uuid) {
+    selectedCarrot.removeFromParent();
+    lastSelectedCarrot = selectedCarrot;
+    return true;
+  }
 }
 
 function createCarrots(num, camera) {
@@ -25,17 +27,18 @@ function createCarrots(num, camera) {
   if (num === undefined) num = 100;
   const geometry = new ConeBufferGeometry(3, 12, 12, 8).toNonIndexed();
   geometry.rotateX(-Math.PI);
-  // let position = geometry.attributes.position;
+
   for (let i = 0; i < num; i++) {
     const material = new MeshBasicMaterial({ color: 0xf47a44 });
     const carrot = new Mesh(geometry, material);
     carrot.position.x = getRandomInt(-800, 800);
     carrot.position.z = getRandomInt(-800, 800);
     let verticalAngle = 0;
+
     carrot.tick = (delta) => {
       if (
-        Math.abs(carrot.position.x - camera.position.x) < 10 &&
-        Math.abs(carrot.position.z - camera.position.z) < 10
+        Math.abs(carrot.position.x - camera.position.x) < 12 &&
+        Math.abs(carrot.position.z - camera.position.z) < 12
       ) {
         carrot.position.y += 3.0 * delta;
         verticalAngle += 5.5 * delta;
@@ -54,4 +57,4 @@ function createCarrots(num, camera) {
   return carrots;
 }
 
-export { createCarrots, selectCarrot, deleteCarrot };
+export { createCarrots, deleteCarrot };

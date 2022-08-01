@@ -59,3 +59,28 @@ html, body {
   0% {opacity: 0;}
   100%{opacity: 1;}
 }
+
+#sub-display {
+  width: 30%;
+  margin: 32px;
+  background-color: rgba(112, 112, 112, 0.308);
+  position: absolute;
+  left: 0;
+
+  font-size: 32px;
+
+  display: none;
+}
+
+#sub-display p {
+  font-size: 1.6em;
+  letter-spacing: 0.1em;
+  margin-left: 5%;
+}
+
+#carrot-num {
+  font-size: 1.65em;
+  margin-left: 10%;
+  vertical-align: middle;
+  font-weight: bold;
+}

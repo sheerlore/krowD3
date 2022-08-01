@@ -1,22 +1,24 @@
 // import { OrbitControls } from "../../../vendor/three/examples/jsm/controls/OrbitControls.js";
 // import { OrbitControls } from "https://cdn.skypack.dev/three@0.136.2/examples/jsm/controls/OrbitControls.js";
-import { Vector2, Vector3 } from "../../../vendor/three/build/three.module.js";
+import { Vector3 } from "../../../vendor/three/build/three.module.js";
 import { PointerLockControls } from "../../../vendor/three/examples/jsm/controls/PointerLockControls.js";
-import { deleteCarrot, selectCarrot } from "../components/carrot.js";
+import { deleteCarrot } from "../components/carrot.js";
 
 const menu = document.querySelector("#menu");
 const instructions = document.querySelector("#instructions");
+const subDisplay = document.querySelector("#sub-display");
+const carrotNum = document.querySelector("#carrot-num");
 const velocity = new Vector3();
 const direction = new Vector3();
-let position = new Vector2();
 
 let moveForward = false;
 let moveBackward = false;
 let moveLeft = false;
 let moveRight = false;
 let canGet = false;
+let cnum = 0;
 
-function createControls(camera, canvas) {
+function createControls(scene, camera, canvas) {
   const controls = new PointerLockControls(camera, canvas);
 
   instructions.addEventListener("click", () => {
@@ -26,9 +28,11 @@ function createControls(camera, canvas) {
   controls.addEventListener("lock", () => {
     instructions.style.display = "none";
     menu.style.display = "none";
+    subDisplay.style.display = "block";
   });
 
   controls.addEventListener("unlock", () => {
+    subDisplay.style.display = "none";
     menu.style.display = "block";
     instructions.style.display = "";
   });
@@ -61,8 +65,10 @@ function createControls(camera, canvas) {
         break;
 
       case "KeyE":
-        // let carrot = selectCarrot();
-        deleteCarrot();
+        if (deleteCarrot()) {
+          cnum += 1;
+          carrotNum.textContent = String(cnum);
+        }
     }
   });
 

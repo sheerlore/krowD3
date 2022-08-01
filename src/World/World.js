@@ -4,7 +4,7 @@ import {
 } from "../../vendor/three/build/three.module.js";
 
 import { createCamera } from "./components/camera.js";
-import { createCarrots, selectCarrot } from "./components/carrot.js";
+import { createCarrots } from "./components/carrot.js";
 import { loadAmong } from "./components/demo/among.js";
 import { createFloor } from "./components/floor.js";
 import { createLights } from "./components/light.js";
@@ -29,10 +29,10 @@ class World {
 
     // const axes = new AxesHelper(100);
 
-    const controls = createControls(camera, renderer.domElement);
+    const controls = createControls(scene, camera, renderer.domElement);
     const { hemisphereLight } = createLights();
     const floor = createFloor();
-    const carrots = createCarrots(200, camera);
+    const carrots = createCarrots(2, camera);
 
     for (let c of carrots) {
       loop.updatables.push(c);
