@@ -1,8 +1,10 @@
-import { AxesHelper } from "../../vendor/three/build/three.module.js";
+import {
+  AxesHelper,
+  MathUtils,
+} from "../../vendor/three/build/three.module.js";
 
 import { createCamera } from "./components/camera.js";
-import { createCarrot } from "./components/carrot.js";
-import { createCube } from "./components/cube.js";
+import { createCarrots, selectCarrot } from "./components/carrot.js";
 import { loadAmong } from "./components/demo/among.js";
 import { createFloor } from "./components/floor.js";
 import { createLights } from "./components/light.js";
@@ -25,17 +27,19 @@ class World {
     loop = new Loop(camera, scene, renderer);
     container.appendChild(renderer.domElement);
 
+    // const axes = new AxesHelper(100);
+
     const controls = createControls(camera, renderer.domElement);
-    const axes = new AxesHelper(25);
-
-    const floor = createFloor();
-    // const cube = createCube();
-    const carrot = createCarrot();
     const { hemisphereLight } = createLights();
+    const floor = createFloor();
+    const carrots = createCarrots(200, camera);
 
+    for (let c of carrots) {
+      loop.updatables.push(c);
+      scene.add(c);
+    }
     loop.updatables.push(controls);
-
-    scene.add(hemisphereLight, axes, carrot, floor);
+    scene.add(hemisphereLight, floor);
 
     // 画面のリサイズ処理
     const resizer = new Resizer(container, camera, renderer);

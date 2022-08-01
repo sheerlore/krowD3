@@ -7,8 +7,8 @@ import {
 
 function createScene() {
   const scene = new Scene();
-  scene.background = new Color(0xffffff);
-  scene.fog = new Fog(0xffffff, 0, 500);
+  scene.background = new Color(0xa9e9ff);
+  scene.fog = new Fog(0xa9e9ff, 0, 500);
   return scene;
 }
 

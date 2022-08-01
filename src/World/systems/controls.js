@@ -1,16 +1,14 @@
 // import { OrbitControls } from "../../../vendor/three/examples/jsm/controls/OrbitControls.js";
 // import { OrbitControls } from "https://cdn.skypack.dev/three@0.136.2/examples/jsm/controls/OrbitControls.js";
-import {
-  Raycaster,
-  Vector3,
-} from "../../../vendor/three/build/three.module.js";
+import { Vector2, Vector3 } from "../../../vendor/three/build/three.module.js";
 import { PointerLockControls } from "../../../vendor/three/examples/jsm/controls/PointerLockControls.js";
+import { deleteCarrot, selectCarrot } from "../components/carrot.js";
 
 const menu = document.querySelector("#menu");
 const instructions = document.querySelector("#instructions");
-const objects = [];
 const velocity = new Vector3();
 const direction = new Vector3();
+let position = new Vector2();
 
 let moveForward = false;
 let moveBackward = false;
@@ -61,6 +59,10 @@ function createControls(camera, canvas) {
         if (canGet === true) velocity.y += 350;
         canGet = false;
         break;
+
+      case "KeyE":
+        // let carrot = selectCarrot();
+        deleteCarrot();
     }
   });
 

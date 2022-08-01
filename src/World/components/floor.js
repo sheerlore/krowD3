@@ -3,8 +3,11 @@ import {
   Color,
   DynamicDrawUsage,
   Float32BufferAttribute,
+  LinearFilter,
+  LinearMipMapLinearFilter,
   Mesh,
   MeshBasicMaterial,
+  NearestFilter,
   PlaneBufferGeometry,
   PlaneGeometry,
   TextureLoader,
@@ -16,6 +19,7 @@ const vertex = new Vector3();
 function createFloor() {
   let geometry = new PlaneGeometry(2000, 2000, 100, 100);
   geometry.rotateX(-Math.PI / 2);
+
   let position = geometry.attributes.position;
   for (let i = 0, l = position.count; i < l; i++) {
     vertex.fromBufferAttribute(position, i);
@@ -28,12 +32,12 @@ function createFloor() {
 
   const textureLoader = new TextureLoader();
   const texture = textureLoader.load("/assets/jimen.jpg");
-  texture.wrapS = ClampToEdgeWrapping;
-  texture.wrapT = ClampToEdgeWrapping;
+  texture.magFilter = NearestFilter;
   const material = new MeshBasicMaterial({
     map: texture,
   });
   const floor = new Mesh(geometry, material);
+
   return floor;
 }
 
