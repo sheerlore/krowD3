@@ -15,19 +15,23 @@ import { World } from "../World.js";
 // }
 
 let selectedCarrot = null;
-let lastSelectedCarrot = { uuid: "dummy" };
 
-function deleteCarrot() {
-  if (!selectedCarrot) return false;
-  if (selectedCarrot.uuid !== lastSelectedCarrot.uuid) {
-    selectedCarrot.removeFromParent();
-    lastSelectedCarrot = selectedCarrot;
+function deleteCarrot(carrot, who) {
+  if (carrot && who === "rabbit") {
+    carrot.removeFromParent();
     World.staticCarrots = World.staticCarrots.filter(
-      (v) => v.uuid !== selectedCarrot.uuid
+      (v) => v.uuid !== carrot.uuid
     );
-    console.log("get:", selectedCarrot.position.x, selectedCarrot.position.z);
     return true;
   }
+
+  if (!selectedCarrot) return false;
+  selectedCarrot.removeFromParent();
+  World.staticCarrots = World.staticCarrots.filter(
+    (v) => v.uuid !== selectedCarrot.uuid
+  );
+  selectedCarrot = null;
+  return true;
 }
 
 function createCarrots(num, camera) {
@@ -56,8 +60,8 @@ function createCarrots(num, camera) {
 
     carrot.tick = (delta) => {
       if (
-        Math.abs(carrot.position.x - camera.position.x) < 12 &&
-        Math.abs(carrot.position.z - camera.position.z) < 12
+        Math.abs(carrot.position.x - camera.position.x) <= 8 &&
+        Math.abs(carrot.position.z - camera.position.z) <= 8
       ) {
         carrot.position.y += 3.0 * delta;
         verticalAngle += 5.5 * delta;
@@ -69,6 +73,7 @@ function createCarrots(num, camera) {
       } else {
         carrot.position.y = 0;
       }
+      // selectedCarrot = null;
     };
 
     World.staticCarrots.push(carrot);

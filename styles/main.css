@@ -10,12 +10,20 @@ html, body {
   display: block;
 }
 
-#menu {
+#start-menu {
   position: absolute;
   width: 100%;
   height: 100%;
   background-color: rgba(130, 130, 130, 0.5);
   user-select: none;
+}
+#clear-menu {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(130, 130, 130, 0.5);
+  user-select: none;
+  display: none;
 }
 
 #instructions {

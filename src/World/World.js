@@ -5,7 +5,7 @@ import {
 
 import { createCamera } from "./components/camera.js";
 import { createCarrots } from "./components/carrot.js";
-import { loadRabbit } from "./components/demo/rabbit.js";
+import { loadRabbit } from "./components/rabbit/rabbit.js";
 import { createFloor } from "./components/floor.js";
 import { createLights } from "./components/light.js";
 import { createScene } from "./components/scene.js";
@@ -15,14 +15,19 @@ import { Loop } from "./systems/Loop.js";
 import { createRenderer } from "./systems/renderer.js";
 import { Resizer } from "./systems/Resizer.js";
 
+const clearMenu = document.querySelector("#clear-menu");
+const clearTime = document.querySelector("#clear-time");
+const instructions = document.querySelector("#instructions");
+
 let camera;
 let renderer;
 let scene;
 let loop;
 class World {
-  static staticCarrotNum = 200;
+  static staticCarrotNum = 2;
   static staticRabbitNum = 1;
   static staticCarrots = [];
+  static staticGameTime = 0;
 
   constructor(container) {
     camera = createCamera();
@@ -43,6 +48,15 @@ class World {
     scene.add(hemisphereLight, mainLight, floor);
     // 画面のリサイズ処理
     const resizer = new Resizer(container, camera, renderer);
+
+    container.addEventListener("clear", () => {
+      console.log("Clear");
+      this.end();
+      clearMenu.style.display = "block";
+      let m = Math.floor(World.staticGameTime / 1000 / 60) % 60;
+      let s = Math.floor(World.staticGameTime / 1000) % 60;
+      clearTime.textContent = m + "分" + s + "秒の人生の時間を無駄にしました";
+    });
   }
 
   render() {

@@ -9,7 +9,7 @@
 </head>
 
 <body>
-  <div id="menu">
+  <div id="start-menu">
     <div id="instructions">
       <p class="head-text">かわいいうさぎと人参狩り!</p>
       <p class="sub-text blink">Click to play</p>
@@ -20,10 +20,20 @@
       </p>
     </div>
   </div>
+
+  <div id="clear-menu">
+    <div id="instructions">
+      <p class="head-text">すべて収穫できましたね！！</p>
+      <p class="sub-text blink">Escキーでもう一度</p>
+      <p id="clear-time" class="sub-text"></p>
+    </div>
+  </div>
+
   <div id="sub-display">
     <p>残りのにんじん<span id="carrot-restnum">0</span></p>
     <p>にんじん収穫数<span id="carrot-num">0</span></p>
   </div>
+
 
   <div id="scene-container"></div>
   <script type="module" src="./src/main.js"></script>
