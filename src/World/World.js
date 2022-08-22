@@ -24,8 +24,8 @@ let renderer;
 let scene;
 let loop;
 class World {
-  static staticCarrotNum = 100;
-  static staticRabbitNum = 1;
+  static staticCarrotNum = 1000;
+  static staticRabbitNum = 30;
   static staticCarrots = [];
   static staticGameTime = 0;
 
@@ -64,9 +64,11 @@ class World {
   }
 
   async init() {
-    const rabbit = await loadRabbit();
-    loop.updatables.push(rabbit);
-    scene.add(rabbit);
+    for (let i = 0; i < World.staticRabbitNum; i++) {
+      let rabbit = await loadRabbit();
+      loop.updatables.push(rabbit);
+      scene.add(rabbit);
+    }
   }
 
   start() {

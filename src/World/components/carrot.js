@@ -52,8 +52,8 @@ function createCarrots(num, camera) {
   for (let i = 0; i < num; i++) {
     const carrot = new Mesh(geometry, material);
     const crHead = new Mesh(crHeadGeometry, crHeadMaterial);
-    carrot.position.x = getRandomInt(-500, 500);
-    carrot.position.z = getRandomInt(-500, 500);
+    carrot.position.x = getRandomInt(-800, 800);
+    carrot.position.z = getRandomInt(-800, 800);
     crHead.position.y = carrot.position.y + 8;
     carrot.add(crHead);
     let verticalAngle = 0;

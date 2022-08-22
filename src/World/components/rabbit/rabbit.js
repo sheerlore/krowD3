@@ -4,13 +4,12 @@ import { setupModel } from "./setupModel.js";
 import { getRandomInt } from "../../../utils/getRandomInt.js";
 
 async function loadRabbit() {
-  const loader = new GLTFLoader();
-
-  const rabbitData = await loader.loadAsync(
+  let loader = new GLTFLoader();
+  let rabbitData = await loader.loadAsync(
     "../../../../assets/models/rabbit5.glb"
   );
   let rabbit = setupModel(rabbitData);
-  rabbit.position.set(0, 5, 0);
+  rabbit.position.set(getRandomInt(-500, 500), 5, getRandomInt(-500, 500));
   return rabbit;
 }
 

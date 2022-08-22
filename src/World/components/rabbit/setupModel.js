@@ -5,7 +5,6 @@ import {
 import { World } from "../../World.js";
 import { deleteCarrot } from "../carrot.js";
 
-let mixer;
 let distMin = 10000000;
 let nearX = 0;
 let nearZ = 0;
@@ -14,6 +13,7 @@ const axis = new Vector3(0, 1, 0);
 const carrotNum = document.querySelector("#carrot-num");
 
 function setupModel(data) {
+  let mixer;
   const model = data.scene;
   model.setRotationFromAxisAngle(new Vector3(0, 0, 0), Math.PI / 2);
   const clip = data.animations;
@@ -43,8 +43,8 @@ function setupModel(data) {
     // model.position.applyAxisAngle(axis, Math.tanh(nearZ / nearX));
 
     if (
-      Math.abs(model.position.x - nearX) > 2 ||
-      Math.abs(model.position.z - nearZ) > 2
+      Math.abs(model.position.x - nearX) > 4 ||
+      Math.abs(model.position.z - nearZ) > 4
     ) {
       // model.lookAt(nearX, 5, nearZ);
       model.position.x += delta * (nearX - model.position.x);
