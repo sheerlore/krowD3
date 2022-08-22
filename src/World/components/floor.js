@@ -31,7 +31,7 @@ function createFloor() {
   geometry.computeVertexNormals();
 
   const textureLoader = new TextureLoader();
-  const texture = textureLoader.load("/assets/jimen.jpg");
+  const texture = textureLoader.load("../../../assets/jimen.jpg");
   texture.magFilter = NearestFilter;
   const material = new MeshBasicMaterial({
     map: texture,
