@@ -45,7 +45,7 @@ html, body {
   font-weight: bold;
 }
 .head-text{
-  font-size: 4em;
+  font-size: 2em;
   letter-spacing: 0.09em;
   text-shadow: 0.02em 0.02em 0.02em rgba(0,0,0,1);
 }

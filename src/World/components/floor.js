@@ -31,7 +31,9 @@ function createFloor() {
   geometry.computeVertexNormals();
 
   const textureLoader = new TextureLoader();
-  const texture = textureLoader.load("../../../assets/jimen.jpg");
+  const texture = textureLoader.load(
+    "https://sheerlore.github.io/krowD3/assets/jimen.jpg"
+  );
   texture.magFilter = NearestFilter;
   const material = new MeshBasicMaterial({
     map: texture,
