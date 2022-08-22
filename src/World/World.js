@@ -24,7 +24,7 @@ let renderer;
 let scene;
 let loop;
 class World {
-  static staticCarrotNum = 2;
+  static staticCarrotNum = 100;
   static staticRabbitNum = 1;
   static staticCarrots = [];
   static staticGameTime = 0;
