@@ -5,9 +5,7 @@ import { getRandomInt } from "../../../utils/getRandomInt.js";
 
 async function loadRabbit() {
   let loader = new GLTFLoader();
-  let rabbitData = await loader.loadAsync(
-    location.href + location.pathname + "/assets/models/rmodel.glb"
-  );
+  let rabbitData = await loader.loadAsync("/krowD3/assets/models/rmodel.glb");
   let rabbit = setupModel(rabbitData);
   rabbit.position.set(getRandomInt(-500, 500), 5, getRandomInt(-500, 500));
   return rabbit;
