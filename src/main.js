@@ -5,7 +5,7 @@ async function main() {
   const world = new World(container);
   await world.init();
   // シーンの描画
-  // world.render();
+  world.render();
   return world;
 }
 

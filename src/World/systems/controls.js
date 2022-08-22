@@ -18,12 +18,18 @@ let moveBackward = false;
 let moveLeft = false;
 let moveRight = false;
 let canGet = false;
+let cloop = null;
+
+function setControlStart(loop) {
+  cloop = loop;
+}
 
 function createControls(scene, camera, canvas) {
   const controls = new PointerLockControls(camera, canvas);
 
   instructions.addEventListener("click", () => {
     controls.lock();
+    cloop.start();
   });
 
   controls.addEventListener("lock", () => {
@@ -134,4 +140,4 @@ function createControls(scene, camera, canvas) {
   return controls;
 }
 
-export { createControls };
+export { createControls, setControlStart };

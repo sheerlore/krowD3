@@ -10,7 +10,7 @@ import { createFloor } from "./components/floor.js";
 import { createLights } from "./components/light.js";
 import { createScene } from "./components/scene.js";
 
-import { createControls } from "./systems/controls.js";
+import { createControls, setControlStart } from "./systems/controls.js";
 import { Loop } from "./systems/Loop.js";
 import { createRenderer } from "./systems/renderer.js";
 import { Resizer } from "./systems/Resizer.js";
@@ -72,7 +72,8 @@ class World {
   }
 
   start() {
-    loop.start();
+    setControlStart(loop);
+    // loop.start();
   }
 
   end() {
