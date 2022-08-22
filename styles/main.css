@@ -45,15 +45,15 @@ html, body {
   font-weight: bold;
 }
 .head-text{
-  font-size: 2em;
+  /* font-size: 2em; */
   letter-spacing: 0.09em;
   text-shadow: 0.02em 0.02em 0.02em rgba(0,0,0,1);
 }
 .sub-text {
-  font-size: 3em;
+  /* font-size: 3em; */
 }
 .isr-text {
-  font-size: 2em;
+  /* font-size: 2em; */
 }
 
 .blink {
@@ -70,7 +70,7 @@ html, body {
 }
 
 #sub-display {
-  width: 30%;
+  width: 25%;
   margin: 32px;
   background-color: rgba(112, 112, 112, 0.308);
   position: absolute;
@@ -81,20 +81,20 @@ html, body {
 }
 
 #sub-display p {
-  font-size: 1.6em;
+  /* font-size: 1.6em; */
   letter-spacing: 0.1em;
   margin-left: 5%;
 }
 
 #carrot-restnum {
-  font-size: 1.65em;
+  /* font-size: 1.65em; */
   margin-left: 10%;
   vertical-align: middle;
   font-weight: bold;
 }
 
 #carrot-num {
-  font-size: 1.65em;
+  /* font-size: 1.65em; */
   margin-left: 10%;
   vertical-align: middle;
   font-weight: bold;
