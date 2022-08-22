@@ -9,6 +9,8 @@
 </head>
 
 <body>
+  <h1 id="sp-message">PC専用です。または画面サイズが足りません</h1>
+
   <div id="start-menu">
     <div id="instructions">
       <p class="head-text">かわいいうさぎと人参狩り!</p>
@@ -34,8 +36,26 @@
     <p>にんじん収穫数<span id="carrot-num">0</span></p>
   </div>
 
-
   <div id="scene-container"></div>
+
+  <script>
+    const spMessage = document.querySelector("#sp-message");
+    const startMenu = document.querySelector("#start-menu");
+    const clearMenu = document.querySelector("#clear-menu");
+    const subDisplay = document.querySelector("#sub-display");
+    const scene = document.querySelector("#scene-container");
+    if (
+      navigator.userAgent.match(/(iPhone|iPad|iPod|Android)/i) ||
+      (window.innerWidth <= 800 && window.innerHeight <= 600)
+    ) {
+      startMenu.style.display = "none";
+      clearMenu.style.display = "none";
+      subDisplay.style.display = "none";
+      scene.style.display = "none";
+    } else {
+      spMessage.style.display = "none"
+    }
+  </script>
   <script type="module" src="./src/main.js"></script>
 </body>
 
