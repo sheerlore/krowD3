@@ -36,7 +36,7 @@ html, body {
   align-items: center;
 
   text-align: center;
-  /* font-size: 32px; */
+  font-size: 32px;
   cursor: pointer;
 }
 
@@ -75,27 +75,26 @@ html, body {
   background-color: rgba(112, 112, 112, 0.308);
   position: absolute;
   left: 0;
-
-  /* font-size: 32px; */
+  font-size: 32px;
 
   display: none;
 }
 
 #sub-display p {
-  /* font-size: 1.6em; */
+  font-size: 1.6em;
   letter-spacing: 0.1em;
   margin-left: 5%;
 }
 
 #carrot-restnum {
-  /* font-size: 1.65em; */
+  font-size: 1.65em;
   margin-left: 10%;
   vertical-align: middle;
   font-weight: bold;
 }
 
 #carrot-num {
-  /* font-size: 1.65em; */
+  font-size: 1.65em;
   margin-left: 10%;
   vertical-align: middle;
   font-weight: bold;
