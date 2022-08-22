@@ -36,7 +36,7 @@ html, body {
   align-items: center;
 
   text-align: center;
-  font-size: 32px;
+  font-size: 16px;
   cursor: pointer;
 }
 
@@ -75,7 +75,7 @@ html, body {
   background-color: rgba(112, 112, 112, 0.308);
   position: absolute;
   left: 0;
-  font-size: 32px;
+  font-size: 16px;
 
   display: none;
 }
